@@ -1,0 +1,75 @@
+<div class="min-h-screen bg-gray-100 flex justify-center items-center w-full">
+  <div class="bg-white w-full max-w-xl p-6 rounded-xl shadow-xl">
+    <h2 class="text-xl font-bold mb-4 text-center">Expense Tracker</h2>
+    <div class="text-center mb-6">
+      <p class="text-center text-gray-600">Balance:</p>
+      <h3
+        class="text-3xl font-semibold"
+        [ngClass]="{
+          'text-green-700': service.balance() >= 0,
+          'text-red-700': service.balance() < 0,
+        }"
+      >
+        {{ service.balance() | currency: 'USD' : 'symbol' }}
+      </h3>
+    </div>
+    <div class="justify-between flex mb-4">
+      <div class="bg-green-100 text-green-700 p-3 rounded-lg mb-6 w-1/2 ml-2">
+        <p>Income</p>
+        <p class="text-xl text-green-700">{{ service.income() | currency: 'USD' : 'symbol' }}</p>
+      </div>
+
+      <div class="bg-red-100 text-red-700 p-3 rounded-lg mb-6 w-1/2 ml-2">
+        <p>Expense</p>
+        <p class="text-xl text-red-700">{{ service.expense() | currency: 'USD' : 'symbol' }}</p>
+      </div>
+    </div>
+    <input
+      type="text"
+      [(ngModel)]="text"
+      placeholder="Description..."
+      class="border border-gray-300 rounded-lg p-3 mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+    <input
+      type="number"
+      [(ngModel)]="amount"
+      placeholder="Amount..."
+      class="border border-gray-300 rounded-lg p-3 mb-4 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+    />
+
+    <button
+      class="w-full bg-blue-600 text-white p-2 rounded-lg hover:bg-blue-700"
+      (click)="addTransaction()"
+    >
+      Add Expense
+    </button>
+    <ul class="mt-6 space-y-2">
+      @for (t of service.transactions(); track t) {
+        <li
+          class="flex justify-between items-center border-l-4 p-2 rounded"
+          [class.border-l-green-700]="t.amount > 0"
+          [class.border-l-red-700]="t.amount < 0"
+        >
+          <span>{{ t.text }}</span>
+
+          <div class="flex items-center gap-3">
+            <span
+              class="font-semibold text-lg"
+              [class.text-green-600]="t.amount > 0"
+              [class.text-red-600]="t.amount < 0"
+            >
+              {{ t.amount | currency: 'EUR' }}
+            </span>
+
+            <button
+              class="w-8 h-8 flex items-center justify-center rounded-full bg-red-100 text-red-600 hover:bg-red-600 hover:text-white transition duration-200"
+              (click)="remove(t.id)"
+            >
+              ✕
+            </button>
+          </div>
+        </li>
+      }
+    </ul>
+  </div>
+</div>
