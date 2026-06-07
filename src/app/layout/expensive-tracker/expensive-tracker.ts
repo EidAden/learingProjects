@@ -22,6 +22,8 @@ export class ExpensiveTracker {
   /** Transaction amount from the input field */
   amount: number = 0;
 
+  errorMessage: string = '';
+
   /** Injects the transaction service */
   service = inject(TransactionService);
 
@@ -30,7 +32,10 @@ export class ExpensiveTracker {
    * Resets the input fields afterwards.
    */
   addTransaction() {
-    if (!this.text || !this.amount) return;
+    if (!this.text || !this.amount) {
+      this.errorMessage = 'Please fill in all fields.';
+      return;
+    }
 
     const transaction: Transaction = {
       id: Date.now(),

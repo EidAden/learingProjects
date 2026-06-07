@@ -24,6 +24,7 @@
         <p class="text-xl text-red-700">{{ service.expense() | currency: 'USD' : 'symbol' }}</p>
       </div>
     </div>
+
     <input
       type="text"
       [(ngModel)]="text"
@@ -43,8 +44,11 @@
     >
       Add Expense
     </button>
+    @if (errorMessage) {
+      <p class="text-red-500">{{ errorMessage }}</p>
+    }
     <ul class="mt-6 space-y-2">
-      @for (t of service.transactions(); track t) {
+      @for (t of service.transactions(); track t.id) {
         <li
           class="flex justify-between items-center border-l-4 p-2 rounded"
           [class.border-l-green-700]="t.amount > 0"
