@@ -6,6 +6,7 @@ import { TodoList } from './components/todo-list/todo-list';
 import { Quiz } from './components/quiz/quiz';
 import { StoppWatch } from './components/stopp-watch/stopp-watch';
 import { GPassword } from './components/g-password/g-password';
+import { Github } from './components/github/github';
 
 export const routes: Routes = [
   {
@@ -38,5 +39,9 @@ export const routes: Routes = [
   {
     path: 'g-password',
     component: GPassword,
+  },
+  {
+    path: 'github',
+    component: Github,
   },
 ];

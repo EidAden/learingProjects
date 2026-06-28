@@ -1,0 +1,56 @@
+<div
+  class="min-h-screen bg-gradient-to-br from-gray-900 to-gray-800 text-white flex items-center justify-center"
+>
+  <div class="w-full max-w-md bg-gray-800 p-6 rounded-2xl shadow-lg space-y-4">
+    <h2 class="text-2xl font-bold text-center">GitHub User Search</h2>
+
+    <div class="flex gap-2">
+      <input
+        type="text"
+        placeholder="Enter Username..."
+        class="flex-1 p-2 rounded bg-gray-700 outline-none text-2xl"
+        (input)="query.set($any($event.target).value)"
+      />
+
+      <button class="bg-blue-500 px-4 rounded hover:bg-blue-600 p-2" (click)="search()">
+        Search
+      </button>
+    </div>
+
+    @if (loading()) {
+      <p class="text-center font-bold text-gray-400">Loading...</p>
+    }
+
+    @if (errors()) {
+      <p class="text-center font-bold text-red-600">{{ errors() }}</p>
+    }
+
+    @if (user()) {
+      <div
+        class="bg-gray-700 p-4 rounded-xl text-center cursor-pointer hover:scale-105 transition-transform duration-300"
+        (click)="openProfile()"
+      >
+        <img
+          [src]="user().avatar_url"
+          alt="GitHub profile avatar"
+          class="w-20 h-20 rounded-full mx-auto mt-2 border-2 border-white"
+        />
+
+        <h2 class="font-bold text-lg">
+          {{ user().name || user().login }}
+        </h2>
+
+        <p class="text-sm text-gray-300">
+          {{ user().bio || 'No bio available' }}
+        </p>
+
+        <p class="text-sm text-gray-300">👥 Followers: {{ user().followers }}</p>
+
+        <p class="text-sm text-gray-300">➡️ Following: {{ user().following }}</p>
+
+        <p class="text-sm text-gray-300">📦 Public Repositories: {{ user().public_repos }}</p>
+        <p class="text-xs text-gray-400 mt-2">Click to view profile</p>
+      </div>
+    }
+  </div>
+</div>
