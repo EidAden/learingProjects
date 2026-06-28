@@ -1,0 +1,47 @@
+<div class="min-h-screen flex items-center justify-center bg-gray-100 p-4">
+  <div class="w-full max-w-md rounded-3xl bg-slate-900 p-8 shadow-2xl text-white text-center">
+    <h2 class="text-3xl font-bold tracking-widest mb-8">STOPWATCH</h2>
+
+    <div
+      class="mx-auto mb-8 flex h-72 w-72 items-center justify-center rounded-full border-8 border-blue-500 bg-slate-800 shadow-lg"
+    >
+      <div>
+        <div class="text-5xl font-mono font-bold tracking-wider">
+          {{ hours().toString().padStart(2, '0') }}: {{ minutes().toString().padStart(2, '0') }}:
+          {{ seconds().toString().padStart(2, '0') }}
+        </div>
+
+        <div
+          class="mt-4 flex justify-center gap-6 text-xs text-slate-400 uppercase tracking-widest"
+        >
+          <span>Hours</span>
+          <span>Minutes</span>
+          <span>Seconds</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="flex justify-center gap-4">
+      <button
+        class="rounded-xl bg-slate-700 px-6 py-3 font-bold hover:bg-slate-600 transition"
+        (click)="reset()"
+      >
+        RESET
+      </button>
+
+      <button
+        class="rounded-xl bg-blue-500 px-8 py-3 font-bold hover:bg-blue-600 transition"
+        (click)="star()"
+      >
+        START
+      </button>
+
+      <button
+        class="rounded-xl bg-red-500 px-6 py-3 font-bold hover:bg-red-600 transition"
+        (click)="stopp()"
+      >
+        STOP
+      </button>
+    </div>
+  </div>
+</div>

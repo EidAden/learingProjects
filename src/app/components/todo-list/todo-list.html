@@ -1,0 +1,109 @@
+<section class="todo-page">
+  <div class="todo-container">
+    <header class="todo-header">
+      <div>
+        <h1>My Todos</h1>
+
+        <p>Manage your daily tasks clearly and professionally.</p>
+      </div>
+    </header>
+
+    <form class="todo-form" [formGroup]="addInfo">
+      <div class="form-group">
+        <label>Title *</label>
+        <input type="text" formControlName="title" placeholder="e.g. Learn Angular Signals" />
+      </div>
+
+      <div class="form-group">
+        <label>Priority *</label>
+        <select formControlName="priority">
+          <option>urgent</option>
+          <option>high</option>
+          <option>medium</option>
+          <option>low</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Status *</label>
+
+        <select formControlName="status">
+          <option value="open">open</option>
+          <option value="in-progress">in-progress</option>
+          <option value="done">done</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label>Description</label>
+        <textarea formControlName="description" placeholder="Optional description..."></textarea>
+      </div>
+
+      <button class="btn btn-primary" type="button" (click)="addTodo()">Add Todo</button>
+    </form>
+
+    <!-- <div class="todo-list">
+      @for (todo of todos(); track todo.id) {
+        <article class="todo-card">
+          <button class="todo-check"></button>
+
+          <div class="todo-content">
+            <h3>{{ todo.title }}</h3>
+            <p>{{ todo.createdAt }}</p>
+            <p>{{ todo.description }}</p>
+          </div>
+          <span class="badge badge-urgent"> {{ todo.priority }}</span>
+
+          <div class="todo-actions">
+            <button class="icon-btn">✎</button>
+            <button class="icon-btn danger">🗑</button>
+          </div>
+        </article>
+
+        <article class="todo-card done-card">
+          <button class="todo-check checked"></button>
+
+          <div class="todo-content">
+            <h3 class="done">Finish HTML and SCSS</h3>
+            <p>09.06.2026</p>
+          </div>
+
+          <span class="badge badge-done">done</span>
+
+          <div class="todo-actions">
+            <button class="icon-btn danger">🗑</button>
+          </div>
+        </article>
+      }
+    </div> -->
+
+    <div class="todo-list">
+      @for (todo of todos(); track todo.id) {
+        <article class="todo-card" [class.done-card]="todo.status === 'done'">
+          <button
+            class="todo-check"
+            [class.checked]="todo.status === 'done'"
+            (click)="toggleStatus(todo.id)"
+          ></button>
+
+          <div class="todo-content">
+            <h3 [class.done]="todo.status === 'done'">
+              {{ todo.title }}
+            </h3>
+
+            <p>{{ todo.createdAt }}</p>
+            <p>{{ todo.description }}</p>
+          </div>
+
+          <span class="badge" [class]="'badge badge-' + todo.status">
+            {{ todo.status }}
+          </span>
+
+          <div class="todo-actions">
+            <button class="icon-btn">✎</button>
+            <button class="icon-btn danger">🗑</button>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

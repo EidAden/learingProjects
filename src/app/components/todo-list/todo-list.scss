@@ -1,0 +1,207 @@
+$bg: #f4f7fc;
+$card: #ffffff;
+
+$text: #000000;
+$text-light: #64748b;
+
+$border: #e2e8f0;
+
+$primary: #3b82f6;
+$success: #22c55e;
+$danger: #ef4444;
+$warning: #f59e0b;
+
+.todo-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f172a, #1e293b);
+  padding: 40px 20px;
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.todo-container {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.todo-header {
+  text-align: center;
+  margin-bottom: 40px;
+
+  h1 {
+    color: $text;
+    font-size: 3rem;
+    margin-bottom: 8px;
+  }
+
+  p {
+    color: $text-light;
+  }
+}
+
+.todo-layout {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  gap: 24px;
+}
+
+.todo-form {
+  background: $card;
+  padding: 24px;
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  height: fit-content;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+
+  h2 {
+    color: $text;
+    margin: 0;
+  }
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #475569;
+  border-radius: 12px;
+  background: #334155;
+  color: white;
+  outline: none;
+
+  &:focus {
+    border-color: $primary;
+  }
+}
+
+textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.btn-primary {
+  border: none;
+  background: $primary;
+  color: white;
+  padding: 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+  transition: 0.3s;
+
+  &:hover {
+    background: #2563eb;
+  }
+}
+
+.todo-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.todo-card {
+  background: $card;
+  border-radius: 20px;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  transition: 0.3s;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: #334155;
+    transform: translateY(-3px);
+  }
+}
+
+.priority-urgent {
+  border-left: 5px solid $danger;
+}
+
+.priority-high {
+  border-left: 5px solid $warning;
+}
+
+.priority-medium {
+  border-left: 5px solid $primary;
+}
+
+.priority-low {
+  border-left: 5px solid $success;
+}
+
+.todo-check {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid $primary;
+  background: transparent;
+  color: transparent;
+  cursor: pointer;
+}
+
+.checked {
+  background: $success;
+  border-color: $success;
+  color: white;
+}
+
+.todo-content {
+  flex: 1;
+
+  h3 {
+    color: $text;
+    margin: 0 0 6px;
+  }
+}
+
+.todo-date {
+  color: $text-light;
+  font-size: 13px;
+  margin-bottom: 4px;
+}
+
+.todo-description {
+  color: #cbd5e1;
+}
+
+.badge {
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: rgba(59, 130, 246, 0.2);
+  color: #60a5fa;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.todo-actions {
+  display: flex;
+  gap: 8px;
+
+  button {
+    width: 36px;
+    height: 36px;
+    border: none;
+    border-radius: 10px;
+    background: #0f172a;
+    cursor: pointer;
+  }
+}
+
+.done-card {
+  opacity: 0.6;
+
+  h3 {
+    text-decoration: line-through;
+  }
+}
+
+@media (max-width: 900px) {
+  .todo-layout {
+    grid-template-columns: 1fr;
+  }
+}
